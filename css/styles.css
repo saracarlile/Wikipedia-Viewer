@@ -12,12 +12,11 @@
   margin: 0 auto;
 }
 
-.outer {
-    display: flex;
-    flex-direction: row;
-    background-color: lightyellow;
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2.5em;
 }
-
 
 
 .flexcontainer {
@@ -25,9 +24,7 @@
    display: flex;
    -webkit-flex-direction: row;
    flex-direction: row;
-    min-height: 300px;
-    background-color: #dce7f2;
-    border: 1px solid #2a4f73;
+    min-height: 200px;
     -webkit-align-items: center;
    align-items: center;
    -webkit-justify-content: center;
@@ -37,13 +34,20 @@
 
 .flex-item-grow-1 {
    flex-grow: 1;
-   margin-left: 8px;
+   margin-left: 3em;
 }
 
 button {
-    margin-left: 8px;
-    border-radius: 30px;
-    margin-right: 8px;
+    height: 35px;
+    width: 65px;
+}
+#flex-button-random {
+    margin-right: 3em;
+    margin-left: 1em;
+}
+
+#flex-button-search {
+    margin-left: .5em;
 }
 
 input {
