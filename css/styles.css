@@ -55,3 +55,9 @@ button {
 input {
     height: 35px;
 }
+
+.placeholder {
+    color: rgba(142, 142, 142, 0.8);
+}
+
+
