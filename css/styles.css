@@ -2,7 +2,10 @@
     box-sizing: border-box;
 }
 
-
+body {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-weight: 300;
+}
 .page-content {
       padding-top: 2em;
 }
@@ -34,7 +37,6 @@ h1 {
 
 .flex-item-grow-1 {
    flex-grow: 1;
-   margin-left: 3em;
 }
 
 button {
@@ -42,12 +44,12 @@ button {
     width: 65px;
 }
 #flex-button-random {
-    margin-right: 3em;
+    margin-right: 1em;
     margin-left: 1em;
 }
 
 #flex-button-search {
-    margin-left: .5em;
+    margin-left: 1em;
 }
 
 input {
