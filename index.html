@@ -18,20 +18,23 @@
 </head>
 
 <body>
-<div class="page-content">
-	<div class="container">
-		<h1>Wikipedia Viewer</h1>
-		<div class="flexcontainer">
-			<input type="text" class="flex-item-grow-1" value="Search Wikipedia"><button id="flex-button-search">Search</button><button id="flex-button-random">Random</button>
+	<div class="page-content" ng-controller="wikiController">
+		<div class="container">
+			<h1>Wikipedia Viewer</h1>
+			<div class="flexcontainer">
+				<input type="text" class="flex-item-grow-1" ng-model="searchAll" ng-focus='methodA()' ng-blur='methodB()' >
+				<button id="flex-button-search" ng-click="search()">Search</button>
+				<button id="flex-button-random" ng-click="random()">Random</button>
+			</div>
 		</div>
-	</div><!--close container-->
-</div>
+		<!--close container-->
+	</div>
 
-			<script type='application/javascript' src="js/vendor/jquery-3.1.1.min.js"></script>
-			<script type='application/javascript' src='js/vendor/disable-double-tap.js'></script>
-			<script type='application/javascript' src='js/vendor/fastclick.js'></script>
-			<script type='application/javascript' src="js/jquery-plugins.js"></script>
-			<script type='application/javascript' src="js/scripts.js"></script>
+	<script type='application/javascript' src="js/vendor/jquery-3.1.1.min.js"></script>
+	<script type='application/javascript' src='js/vendor/disable-double-tap.js'></script>
+	<script type='application/javascript' src='js/vendor/fastclick.js'></script>
+	<script type='application/javascript' src="js/jquery-plugins.js"></script>
+	<script type='application/javascript' src="js/scripts.js"></script>
 </body>
 
 </html>

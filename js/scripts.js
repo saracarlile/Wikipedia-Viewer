@@ -1,6 +1,20 @@
 var app = angular.module('wikipediaViewer', []);
 
-app.controller('myCtrl', function($scope) {
-    $scope.firstName= "John";
-    $scope.lastName= "Doe";
+app.controller('wikiController', function($scope) {
+    
+    $scope.searchAll = "Search Wikipedia";
+    
+    $scope.search = function () {
+        console.log("search");
+        $scope.searchAll = null;
+
+    }
+
+     $scope.random = function () {
+        console.log("random");
+        $scope.searchAll = null;
+    }
+
+
+
 });
