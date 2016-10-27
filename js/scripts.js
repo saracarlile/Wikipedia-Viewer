@@ -16,7 +16,7 @@ app.controller('wikiController', function($scope, $http) {
 
         $http({
             method: 'GET',
-            url: 'http://en.wikipedia.org//w/api.php?action=query&format=json&titles=batman&callback=?',
+            url: 'https://en.wikipedia.org//w/api.php?action=query&format=json&titles=batman&callback=?',
             async: true,
             dataType: 'jsonp',
         }).then(function successCallback(response) {
