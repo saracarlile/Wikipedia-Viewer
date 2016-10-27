@@ -1,6 +1,22 @@
 var app = angular.module('wikipediaViewer', []);
 
-app.controller('wikiController', function($scope, $http) {
+app.factory('wikiService', function($http) {
+      
+    var wikiService = {
+        get: function(country) {
+            return $http.jsonp('http://es.wikipedia.org/w/api.php?titles=' + country.name.toLowerCase() + '&rawcontinue=true&action=query&format=json&prop=extracts&callback=JSON_CALLBACK');
+        }
+    };
+    
+    return wikiService;
+});
+
+app.controller('wikiController', function($scope, wikiService) {
+
+    wikiService.get({name: 'germany'}).then(function(data) {
+        console.log(data);
+        $scope.wikiData = data.data;
+    });
     
     $scope.searchAll = " Search Wikipedia";
     var elm = document.querySelector('input');
@@ -9,29 +25,6 @@ app.controller('wikiController', function($scope, $http) {
         console.log("search");
         $scope.searchAll = null;
         elm.className = "flex-item-grow-1 ";
-        var searchTerm = elm.val;
-        //var url = "http://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + searchTerm + "&callback=?";
-       // http://en.wikipedia.org//w/api.php?action=query&format=json&titles=batman&callback=?
-
-
-        $http({
-            method: 'GET',
-            url: 'https://en.wikipedia.org//w/api.php?action=query&format=json&titles=batman&origin=saracarlile.github.io&callback=?',
-            async: true,
-            dataType: 'jsonp',
-            headers: { 'Wikipedia-Search-Result-App': '1.0' },
-        }).then(function successCallback(response) {
-            // this callback will be called asynchronously
-            // when the response is available
-            console.log(response);
-        }, function errorCallback(response) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-            console.log(response);
-        });
-
-  
-
 
     };
 
@@ -45,5 +38,6 @@ app.controller('wikiController', function($scope, $http) {
           $scope.searchAll = null;
           elm.className="flex-item-grow-1 ";
     }; 
-});
 
+    //http://jsfiddle.net/awolf2904/42y25djs/
+});
