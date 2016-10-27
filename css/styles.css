@@ -1,13 +1,16 @@
-*, :after, :before {
-    box-sizing: border-box;
+*,
+:after,
+:before {
+  box-sizing: border-box;
 }
 
 body {
-   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-   font-weight: 300;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
 }
+
 .page-content {
-      padding-top: 2em;
+  padding-top: 2em;
 }
 
 .container {
@@ -21,43 +24,54 @@ h1 {
   font-size: 2.5em;
 }
 
-
 .flexcontainer {
-   display: -webkit-flex;
-   display: flex;
-   -webkit-flex-direction: row;
-   flex-direction: row;
-    min-height: 200px;
-    -webkit-align-items: center;
-   align-items: center;
-   -webkit-justify-content: center;
-   justify-content: center;
-   margin-bottom: 20px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  min-height: 200px;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .flex-item-grow-1 {
-   flex-grow: 1;
+  flex-grow: 1;
 }
 
 button {
-    height: 35px;
-    width: 65px;
+  height: 40px;
+  width: 60px;
 }
+
 #flex-button-random {
-    margin-right: 1em;
-    margin-left: 1em;
+  margin-right: 1em;
+  margin-left: 1em;
 }
 
 #flex-button-search {
-    margin-left: 1em;
+  margin-left: 1em;
 }
 
 input {
-    height: 35px;
+  height: 40px;
 }
 
 .placeholder {
-    color: rgba(142, 142, 142, 0.8);
+  color: rgba(142, 142, 142, 0.8);
 }
 
-
+@media only screen and (max-width: 500px) {
+  .container {
+    max-width: 320em;
+    margin: 0 auto;
+  }
+  #flex-button-random {
+    margin: 5px;
+  }
+  #flex-button-search {
+    margin-left: 5px;
+  }
+}
