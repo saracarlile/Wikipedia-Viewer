@@ -19,6 +19,7 @@ app.controller('wikiController', function($scope, $http) {
             url: 'https://en.wikipedia.org//w/api.php?action=query&format=json&titles=batman&origin=saracarlile.github.io&callback=?',
             async: true,
             dataType: 'jsonp',
+            headers: { 'Wikipedia-Search-Result-App': '1.0' },
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
             // when the response is available
@@ -29,7 +30,7 @@ app.controller('wikiController', function($scope, $http) {
             console.log(response);
         });
 
-
+  
 
 
     };
