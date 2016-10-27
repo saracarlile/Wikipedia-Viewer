@@ -12,6 +12,13 @@ app.factory('wikiService', function($http) {
     return wikiService;
 });
 
+
+app.filter('stripTags', function() {
+	return function(text) {
+		return  text ? String(text).replace(/<[^>]+>/gm, '') : '';
+	};
+});
+
 app.controller('wikiController', function($scope, wikiService) {
 
     
@@ -25,8 +32,11 @@ app.controller('wikiController', function($scope, wikiService) {
         elm.className = "flex-item-grow-1 ";
 
         wikiService.get({name: 'germany'}).then(function(data) {
-        console.log(data);
-        $scope.wikiData = data.data;
+         console.log(data);
+         console.log(data.data.query.search)
+        console.log(data.data.query.search[0]["title"]);
+        console.log(data.data.query.search[0]["snippet"]);
+        $scope.wikiData = data.data.query.search;
     });
 
     };
