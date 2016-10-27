@@ -13,10 +13,7 @@ app.factory('wikiService', function($http) {
 
 app.controller('wikiController', function($scope, wikiService) {
 
-    wikiService.get({name: 'germany'}).then(function(data) {
-        console.log(data);
-        $scope.wikiData = data.data;
-    });
+    
     
     $scope.searchAll = " Search Wikipedia";
     var elm = document.querySelector('input');
@@ -25,6 +22,11 @@ app.controller('wikiController', function($scope, wikiService) {
         console.log("search");
         $scope.searchAll = null;
         elm.className = "flex-item-grow-1 ";
+
+        wikiService.get({name: 'germany'}).then(function(data) {
+        console.log(data);
+        $scope.wikiData = data.data;
+    });
 
     };
 
