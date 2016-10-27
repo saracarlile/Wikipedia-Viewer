@@ -9,13 +9,20 @@ app.controller('wikiController', function($scope, $http) {
         console.log("search");
         $scope.searchAll = null;
         elm.className = "flex-item-grow-1 ";
+        var searchTerm = elm.val;
+        //var url = "http://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + searchTerm + "&callback=?";
+       // http://en.wikipedia.org//w/api.php?action=query&format=json&titles=batman&callback=?
+
 
         $http({
-            method: 'POST',
-            url: 'http://en.wikipedia.org/w/api.php'
+            method: 'GET',
+            url: 'http://en.wikipedia.org//w/api.php?action=query&format=json&titles=batman&callback=?',
+            async: true,
+            dataType: 'jsonp',
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
             // when the response is available
+            console.log(response);
         }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
@@ -23,23 +30,7 @@ app.controller('wikiController', function($scope, $http) {
         });
 
 
-        function getSearchResults(data) {
-            console.log(data);
-        }
 
-        $("#submit").click(function () {
-            var searchTerm = $("input[name='search']").val();
-            var url = "http://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + searchTerm + "&callback=?";
-            $.ajax({
-                type: "GET",
-                url: url,
-                async: true,
-                dataType: "jsonp",
-                success: function (data) {
-                    getSearchResults(data);
-                }
-            });
-});
 
     };
 
