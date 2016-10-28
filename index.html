@@ -27,7 +27,7 @@
 				<button id="flex-button-random" ng-click="random()">Random</button>
 			</div>
 			<div ng-repeat="x in wikiData" class="result-container">				
-					<div class="result-item"><strong>Title:</strong> {{x.title}}</div>
+					<div class="result-item title"><strong>Title:</strong> {{x.title}}</div>
 					<div class="result-item"><strong>Wordcount:</strong> {{x.wordcount}}</div>
 					<div class="result-item"><strong>Snippet: </strong>{{x.snippet |  stripTags }}</div>			
 			</div>
