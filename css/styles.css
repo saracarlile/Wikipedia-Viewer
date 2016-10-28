@@ -34,7 +34,7 @@ h1 {
   align-items: center;
   -webkit-justify-content: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .flex-item-grow-1 {
@@ -57,21 +57,82 @@ button {
 
 input {
   height: 40px;
+  font-size: 1.2em;
 }
 
 .placeholder {
   color: rgba(142, 142, 142, 0.8);
 }
 
-@media only screen and (max-width: 500px) {
+.result-container {
+   display: block;
+   margin-bottom: 1em;
+   border: 1px solid black;
+   padding: 1em;
+}
+
+
+.result-item {
+  display: block;
+}
+
+
+@media only screen and (max-width: 420px) {
   .container {
-    max-width: 320em;
+    max-width: 405px;
     margin: 0 auto;
   }
+    #flex-button-random {
+      margin: 1px;
+      margin-left: 3px;
+      padding: 3px;
+  }
+    #flex-button-search {
+      margin: 1px;
+      margin-left: 3px;
+      padding: 3px;
+    }
+
+}
+
+
+@media only screen and (max-width: 361px) {
+  .container {
+    max-width: 350px;
+    margin: 0 auto;
+  }
+   #flex-button-random {
+      margin: 1px;
+      margin-left: 3px;
+      padding: 3px;
+  }
+    #flex-button-search {
+      margin: 1px;
+      margin-left: 3px;
+      padding: 3px;
+    }
+   
+}
+
+@media only screen and (max-width: 320px) {
+  .container {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
   #flex-button-random {
-    margin: 5px;
+      margin: 1px;
+      margin-left: 3px;
+      padding: 2px;
   }
-  #flex-button-search {
-    margin-left: 5px;
-  }
+    #flex-button-search {
+      margin: 1px;
+      margin-left: 3px;
+      padding: 2px;
+    }
+    input {
+      width: 100px;
+      font-size: 1em;
+      height: 40px;
+    }
 }

@@ -22,17 +22,15 @@
 		<div class="container">
 			<h1>Wikipedia Viewer</h1>
 			<div class="flexcontainer">
-				<input type="text" class="flex-item-grow-1 placeholder" ng-model="searchAll" ng-click='clearSuggestedText()'>
+				<input type="text" class="flex-item-grow-1 placeholder" placeholder=" Seach Wikipedia" ng-click='clearSuggestedText()'>
 				<button id="flex-button-search" ng-click="search()">Search</button>
 				<button id="flex-button-random" ng-click="random()">Random</button>
 			</div>
-			<table  border="1">
-				<tr ng-repeat="x in wikiData">
-					<td>{{x.title}}</td>
-					<td>{{x.wordcount}}</td>
-					<td>{{x.snippet |  stripTags }}</td>
-				</tr>
-			</table>
+			<div ng-repeat="x in wikiData" class="result-container">				
+					<div class="result-item"><strong>Title:</strong> {{x.title}}</div>
+					<div class="result-item"><strong>Wordcount:</strong> {{x.wordcount}}</div>
+					<div class="result-item"><strong>Snippet: </strong>{{x.snippet |  stripTags }}</div>			
+			</div>
 			<!--<pre ng-bind="wikiData | json"></pre>-->
 		</div>
 		<!--close container-->

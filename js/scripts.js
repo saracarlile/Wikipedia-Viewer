@@ -23,15 +23,16 @@ app.controller('wikiController', function ($scope, wikiService) {
 
 
 
-    $scope.searchAll = " Search Wikipedia";
     var elm = document.querySelector('input');
+    var result = 'helen';
+
 
     $scope.search = function () {
         console.log("search");
-        $scope.searchAll = null;
-        elm.className = "flex-item-grow-1 ";
 
-        wikiService.get({ name: 'germany' }).then(function (data) {
+        elm.className = "flex-item-grow-1";
+
+        wikiService.get({ name: elm.value }).then(function (data) {
             console.log(data);
             console.log(data.data.query.search)
             console.log(data.data.query.search[0]["title"]);
@@ -43,12 +44,11 @@ app.controller('wikiController', function ($scope, wikiService) {
 
     $scope.random = function () {
         console.log("random");
-        $scope.searchAll = null;
         elm.className = "flex-item-grow-1 ";
     };
 
     $scope.clearSuggestedText = function () {
-        $scope.searchAll = null;
+        elm.placeholder = "";
         elm.className = "flex-item-grow-1 ";
     };
 
