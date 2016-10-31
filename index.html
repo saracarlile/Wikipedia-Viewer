@@ -24,7 +24,7 @@
 			<div class="flexcontainer">
 				<input type="text" class="flex-item-grow-1 placeholder" placeholder=" Seach Wikipedia" ng-click='clearSuggestedText()'>
 				<button id="flex-button-search" ng-click="search()">Search</button>
-				<button id="flex-button-random" ng-click="random()">Random</button>
+				<a href="https://en.wikipedia.org/wiki/Special:Random" target="blank"><button id="flex-button-random" ng-click="random()">Random</button></a>
 			</div>
 			<div ng-repeat="x in wikiData" class="result-container">				
 					<div class="result-item"><strong>Title:</strong> {{x.title}}</div>
