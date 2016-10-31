@@ -27,7 +27,6 @@ app.controller('wikiController', function ($scope, wikiService) {
                 myEl.remove();
                 document.getElementById('error-container').style.display = "block";
                 document.getElementById('error-text').textContent = "You received no results for your query.";
-                console.log("You received no results for your query.");
             }
             else {
                 $scope.wikiData = data.data.query.pages;
@@ -36,7 +35,6 @@ app.controller('wikiController', function ($scope, wikiService) {
         function errorCallback(error) {
             document.getElementById('error-container').style.display = "block";
             document.getElementById('error-text').textContent = "You received an error during the API request.";
-            console.log("You received an error during the API request.");
         }
 
 
@@ -46,13 +44,11 @@ app.controller('wikiController', function ($scope, wikiService) {
         else {
             document.getElementById('error-container').style.display = "block";
             document.getElementById('error-text').textContent = "Please add search term to input box.";
-            console.log("please add search term");
         }
 
     };
 
     $scope.random = function () {
-        //  console.log("random");
         elm.className = "flex-item-grow-1 ";
     };
 
