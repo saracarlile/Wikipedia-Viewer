@@ -26,14 +26,15 @@
 				<button id="flex-button-search" ng-click="search()">Search</button>
 				<a href="https://en.wikipedia.org/wiki/Special:Random" target="blank"><button id="flex-button-random" ng-click="random()">Random</button></a>
 			</div>
-			<div ng-repeat="x in wikiData" id="rrr" class="result-container">				
-					<div class="result-item"><strong>Title:</strong> {{x.title}}</div>
-					<div class="result-item"><strong>Snippet: </strong>{{x.extract }}</div>	
-					<div class="result-item"><strong>Visit on Wikipedia:</strong> <a ng-href="https://en.wikipedia.org/w/index.php?curid={{x.pageid }}" />{{x.title}}</a></div>				
+			<div ng-repeat="x in wikiData" id="rrr" class="result-container">
+				<div class="result-item"><strong>Title:</strong> {{x.title}}</div>
+				<div class="result-item"><strong>Snippet: </strong>{{x.extract }}</div>
+				<div class="result-item"><strong>Visit on Wikipedia:</strong> <a ng-href="https://en.wikipedia.org/w/index.php?curid={{x.pageid }}" />{{x.title}}</a>
+				</div>
 			</div>
 			<div class="result-container" id="error-container">
 				<div class="result-item" id="error-text"></div>
-			</div> 
+			</div>
 		</div>
 		<!--close container-->
 	</div>
