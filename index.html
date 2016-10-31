@@ -27,11 +27,13 @@
 				<button id="flex-button-random" ng-click="random()">Random</button>
 			</div>
 			<div ng-repeat="x in wikiData" class="result-container">				
-					<div class="result-item title"><strong>Title:</strong> {{x.title}}</div>
+					<div class="result-item"><strong>Title:</strong> {{x.title}}</div>
 					<div class="result-item"><strong>Snippet: </strong>{{x.extract }}</div>	
 					<div class="result-item"><strong>Visit on Wikipedia:</strong> <a ng-href="https://en.wikipedia.org/w/index.php?curid={{x.pageid }}" />{{x.title}}</a></div>				
 			</div>
-			<!--<pre ng-bind="wikiData | json"></pre>-->
+			<div class="result-container" id="error-container">
+				<div class="result-item" id="error-text"></div>
+			</div> 
 		</div>
 		<!--close container-->
 	</div>

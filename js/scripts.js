@@ -1,68 +1,53 @@
 var app = angular.module('wikipediaViewer', []);
 
 app.factory('wikiService', function ($http) {
-   
-
-
     var wikiService = {
-
         get: function (titles) {
             return $http.jsonp("https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrsearch=" + encodeURIComponent(titles.name.toLowerCase()) + "&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=2&exlimit=max&callback=JSON_CALLBACK");
         }
     };
     return wikiService;
-
 });
 
-
-
-app.filter('stripTags', function () {
-    return function (text) {
-        return text ? String(text).replace(/<[^>]+>/gm, '') : '';
-    };
-});
 
 app.controller('wikiController', function ($scope, wikiService) {
 
-
     var elm = document.querySelector('input');
-    console.log(elm.value);
 
     $scope.search = function () {
 
-        elm.className = "flex-item-grow-1";
-        function successCallback(data){
-            var testObj = data.data;
-             if(!testObj.hasOwnProperty("query")){
-                 console.log("you received no results");
-             }
-             else{
-                  $scope.wikiData = data.data.query.pages;
-             }           
+        document.getElementById('error-container').style.display = "none";
+        document.getElementById('error-text').textContent = "";
+        elm.className = "flex-item-grow-1";  //clear placeholder text color css on input
+
+        function successCallback(data) {
+            if (!data.data.hasOwnProperty("query")) {
+                $scope.wikiData = "";
+                var myEl = angular.element(document.getElementById("rrr"));
+                myEl.remove();
+                document.getElementById('error-container').style.display = "block";
+                document.getElementById('error-text').textContent = "You received no results for your query.";
+                console.log("You received no results for your query.");
+            }
+            else {
+                $scope.wikiData = data.data.query.pages;
+            }
         }
-        function errorCallback (error){
-            console.log("you received an error");
+        function errorCallback(error) {
+            document.getElementById('error-container').style.display = "block";
+            document.getElementById('error-text').textContent = "You received an error during the API request.";
+            console.log("You received an error during the API request.");
         }
 
 
-        if (elm.value.length > 0) {
+        if (elm.value.length > 0) {   //make sure input box has text
             wikiService.get({ name: elm.value }).then(successCallback, errorCallback);
         }
         else {
+            document.getElementById('error-container').style.display = "block";
+            document.getElementById('error-text').textContent = "Please add search term to input box.";
             console.log("please add search term");
         }
-
-
-
-     /*   if (elm.value.length > 0) {
-            wikiService.get({ name: elm.value }).then(function (data) {
-                $scope.wikiData = data.data.query.pages;
-            });
-        }
-        else {
-            console.log("please add search term");
-        }*/
-
 
     };
 
@@ -80,8 +65,6 @@ app.controller('wikiController', function ($scope, wikiService) {
 
 
 
-//Wiki API call help stack overflow 
+//Wiki API call help Stack Overflow 
 //http://stackoverflow.com/questions/25891076/wikipedia-api-fulltext-search-to-return-articles-with-title-snippet-and-image
 
-//error handling angular 
-//http://stackoverflow.com/questions/17767800/exception-handling-with-jsonp-requests-in-angularjs
