@@ -33,6 +33,9 @@ app.controller('wikiController', function ($scope, wikiService) {
             }
         }
         function errorCallback(error) {
+             $scope.wikiData = "";
+            var myEl = angular.element(document.getElementById("rrr"));
+            myEl.remove();
             document.getElementById('error-container').style.display = "block";
             document.getElementById('error-text').textContent = "You received an error during the API request.";
         }
@@ -42,6 +45,9 @@ app.controller('wikiController', function ($scope, wikiService) {
             wikiService.get({ name: elm.value }).then(successCallback, errorCallback);
         }
         else {
+            $scope.wikiData = "";
+            var myEl = angular.element(document.getElementById("rrr"));
+            myEl.remove();
             document.getElementById('error-container').style.display = "block";
             document.getElementById('error-text').textContent = "Please add search term to input box.";
         }
