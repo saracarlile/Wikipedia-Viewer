@@ -3,12 +3,10 @@ var app = angular.module('wikipediaViewer', []);
 app.factory('wikiService', function ($http) {
 
     var wikiService = {
-        get: function (country) {
-            //return $http.jsonp('https://es.wikipedia.org/w/api.php?titles=' + country.name.toLowerCase() + '&rawcontinue=true&action=query&format=json&prop=extracts&callback=JSON_CALLBACK');
-            return $http.jsonp("https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + country.name.toLowerCase() + "&callback=JSON_CALLBACK");
+        get: function (titles) {
+            return $http.jsonp("https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrsearch=" + encodeURIComponent(titles.name.toLowerCase()) + "&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=2&exlimit=max&callback=JSON_CALLBACK");
         }
     };
-
     return wikiService;
 });
 
@@ -31,25 +29,22 @@ app.controller('wikiController', function ($scope, wikiService) {
 
 
     $scope.search = function () {
-     //   console.log("search");
+        //   console.log("search");
 
         elm.className = "flex-item-grow-1";
 
         wikiService.get({ name: elm.value }).then(function (data) {
-       //     console.log(data);
-       //     console.log(data.data.query.search)
-       //     console.log(data.data.query.search[0]["title"]);
-       //     console.log(data.data.query.search[0]["snippet"]);
-            $scope.wikiData = data.data.query.search;
+            console.log(data);
+            console.log(data.data.query.pages);
+            $scope.wikiData = data.data.query.pages;
         });
 
-       var titles =  document.getElementsByClassName('title');
-       console.log(titles[0].textContent); 
+
 
     };
 
     $scope.random = function () {
-      //  console.log("random");
+        //  console.log("random");
         elm.className = "flex-item-grow-1 ";
     };
 
@@ -58,9 +53,9 @@ app.controller('wikiController', function ($scope, wikiService) {
         elm.className = "flex-item-grow-1 ";
     };
 
-    //http://jsfiddle.net/awolf2904/42y25djs/
 });
 
 
 
-//https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=Kelly&callback=JSON_CALLBACK
+//Wiki API call help stack overflow 
+//http://stackoverflow.com/questions/25891076/wikipedia-api-fulltext-search-to-return-articles-with-title-snippet-and-image
