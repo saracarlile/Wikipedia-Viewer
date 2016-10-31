@@ -1,16 +1,18 @@
 var app = angular.module('wikipediaViewer', []);
 
 app.factory('wikiService', function ($http) {
+   
+
 
     var wikiService = {
+
         get: function (titles) {
             return $http.jsonp("https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrsearch=" + encodeURIComponent(titles.name.toLowerCase()) + "&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=2&exlimit=max&callback=JSON_CALLBACK");
         }
     };
     return wikiService;
+
 });
-
-
 
 
 
@@ -29,16 +31,37 @@ app.controller('wikiController', function ($scope, wikiService) {
     $scope.search = function () {
 
         elm.className = "flex-item-grow-1";
+        function successCallback(data){
+            var testObj = data.data;
+             if(!testObj.hasOwnProperty("query")){
+                 console.log("you received no results");
+             }
+             else{
+                  $scope.wikiData = data.data.query.pages;
+             }           
+        }
+        function errorCallback (error){
+            console.log("you received an error");
+        }
+
 
         if (elm.value.length > 0) {
-        wikiService.get({ name: elm.value }).then(function (data) {
-                 $scope.wikiData = data.data.query.pages;
-           
-        });
+            wikiService.get({ name: elm.value }).then(successCallback, errorCallback);
         }
         else {
             console.log("please add search term");
         }
+
+
+
+     /*   if (elm.value.length > 0) {
+            wikiService.get({ name: elm.value }).then(function (data) {
+                $scope.wikiData = data.data.query.pages;
+            });
+        }
+        else {
+            console.log("please add search term");
+        }*/
 
 
     };
@@ -59,3 +82,6 @@ app.controller('wikiController', function ($scope, wikiService) {
 
 //Wiki API call help stack overflow 
 //http://stackoverflow.com/questions/25891076/wikipedia-api-fulltext-search-to-return-articles-with-title-snippet-and-image
+
+//error handling angular 
+//http://stackoverflow.com/questions/17767800/exception-handling-with-jsonp-requests-in-angularjs
