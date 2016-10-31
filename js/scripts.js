@@ -23,22 +23,22 @@ app.filter('stripTags', function () {
 app.controller('wikiController', function ($scope, wikiService) {
 
 
-
     var elm = document.querySelector('input');
-    var result = 'helen';
-
+    console.log(elm.value);
 
     $scope.search = function () {
-        //   console.log("search");
 
         elm.className = "flex-item-grow-1";
 
+        if (elm.value.length > 0) {
         wikiService.get({ name: elm.value }).then(function (data) {
-            console.log(data);
-            console.log(data.data.query.pages);
-            $scope.wikiData = data.data.query.pages;
+                 $scope.wikiData = data.data.query.pages;
+           
         });
-
+        }
+        else {
+            console.log("please add search term");
+        }
 
 
     };
